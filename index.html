@@ -2,16 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AI Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jayden Crocker – Developer Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .project {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .project h3 {
+      margin-top: 0;
+    }
+
+    .project a {
+      color: #007acc;
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
+    .project a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <div class="chat-container">
-    <h2>AI Chatbot</h2>
-    <div id="chat"></div>
-    <input type="text" id="userInput" placeholder="Type a question..." />
-    <button onclick="sendMessage()">Send</button>
-  </div>
-  <script src="chatbot.js"></script>
+  <header>
+    <h1>Jayden Crocker</h1>
+    <p>Developer Portfolio – Real projects powered by AI & automation</p>
+  </header>
+
+  <main>
+    <div class="project">
+      <h3>AI Business Chatbot</h3>
+      <p>A GPT-3.5 powered chatbot that answers customer questions. Built using Node.js, Express, and the OpenAI API.</p>
+      <a href="https://ai-business-chatbot.onrender.com" target="_blank">🔗 Live Demo</a>
+      <a href="AIbusinessCHATBOT.html" target="_blank">💬 Static HTML Demo</a>
+      <a href="https://github.com/jaydencrocker/ai-business-chatbot" target="_blank">📂 View Code</a>
+    </div>
+
+    <!-- More projects can go here as you build them -->
+  </main>
 </body>
 </html>
