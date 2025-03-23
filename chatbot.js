@@ -1,35 +1,27 @@
-function sendMessage() {
-  const input = document.getElementById('userInput');
+const API_URL = 'https://ai-business-chatbot.onrender.com/chat'; // your live Render backend
+
+async function sendMessage() {
+  const userInput = document.getElementById('userInput').value.trim();
+  if (!userInput) return;
+
   const chat = document.getElementById('chat');
-  const userMessage = input.value.trim();
-  if (!userMessage) return;
+  document.getElementById('userInput').value = '';
 
-  // Display user message
-  const userBubble = document.createElement('p');
-  userBubble.innerHTML = `<strong>You:</strong> ${userMessage}`;
-  chat.appendChild(userBubble);
-  input.value = '';
+  chat.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
 
-  // Simulate bot typing delay
-  setTimeout(() => {
-    const botReply = generateSimulatedResponse(userMessage);
-    const botBubble = document.createElement('p');
-    botBubble.innerHTML = `<strong>Bot:</strong> ${botReply}`;
-    chat.appendChild(botBubble);
-    chat.scrollTop = chat.scrollHeight;
-  }, 700);
-}
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: userInput })
+    });
 
-// Optional: Simulate simple dynamic replies
-function generateSimulatedResponse(message) {
-  message = message.toLowerCase();
-  if (message.includes('hello') || message.includes('hi')) {
-    return "Hi there! How can I assist you today?";
-  } else if (message.includes('price')) {
-    return "Our pricing depends on your needs. Let me know what you're interested in!";
-  } else if (message.includes('support')) {
-    return "You can reach our support team at support@example.com.";
-  } else {
-    return "That's interesting! Tell me more.";
+    if (!response.ok) throw new Error('Server error');
+
+    const data = await response.json();
+    chat.innerHTML += `<p><strong>Bot:</strong> ${data.reply}</p>`;
+  } catch (err) {
+    console.error(err);
+    chat.innerHTML += `<p><strong>Bot:</strong> Error: Unable to connect to chatbot server.</p>`;
   }
 }
