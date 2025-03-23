@@ -47,48 +47,6 @@
     .project a:hover {
       text-decoration: underline;
     }
-
-    /* Chatbot styling */
-    .chat-container {
-      margin-top: 1rem;
-      background: #f0f0f0;
-      padding: 1rem;
-      border-radius: 8px;
-    }
-
-    #chat {
-      background: #fff;
-      border: 1px solid #ccc;
-      padding: 1rem;
-      height: 200px;
-      overflow-y: auto;
-      margin-bottom: 1rem;
-    }
-
-    #userInput {
-      padding: 0.5rem;
-      width: 70%;
-    }
-
-    button {
-      padding: 0.5rem 1rem;
-      background: #007acc;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #005f99;
-    }
-
-    .bot {
-      color: #444;
-    }
-
-    .user {
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
@@ -101,13 +59,8 @@
     <div class="project">
       <h3>AI Business Chatbot</h3>
       <p>A GPT-3.5 powered chatbot that answers customer questions. Built using Node.js, Express, and the OpenAI API.</p>
+      <a href="chatbot.html" target="_blank">💬 Static Demo</a>
       <a href="https://github.com/jaydencrocker/ai-business-chatbot" target="_blank">📂 View Code</a>
-
-      <div class="chat-container">
-        <div id="chat"></div>
-        <input type="text" id="userInput" placeholder="Type a question..." />
-        <button onclick="sendMessage()">Send</button>
-      </div>
     </div>
 
     <div class="project">
@@ -124,21 +77,5 @@
       <a href="https://github.com/jaydencrocker/inventory-api" target="_blank">📂 View Code</a>
     </div>
   </main>
-
-  <script>
-    function sendMessage() {
-      const input = document.getElementById('userInput');
-      const message = input.value.trim();
-      if (!message) return;
-
-      const chat = document.getElementById('chat');
-      const userMessage = `<div class="user">You: ${message}</div>`;
-      const botReply = `<div class="bot">Bot: I'm just a static demo 😅 (No backend connected)</div>`;
-
-      chat.innerHTML += userMessage + botReply;
-      chat.scrollTop = chat.scrollHeight;
-      input.value = '';
-    }
-  </script>
 </body>
 </html>
