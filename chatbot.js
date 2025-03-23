@@ -1,16 +1,35 @@
-async function sendMessage() {
-  const userInput = document.getElementById('userInput').value;
-  document.getElementById('userInput').value = '';
-
+function sendMessage() {
+  const input = document.getElementById('userInput');
   const chat = document.getElementById('chat');
-  chat.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+  const userMessage = input.value.trim();
+  if (!userMessage) return;
 
-  const response = await fetch('/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: userInput })
-  });
+  // Display user message
+  const userBubble = document.createElement('p');
+  userBubble.innerHTML = `<strong>You:</strong> ${userMessage}`;
+  chat.appendChild(userBubble);
+  input.value = '';
 
-  const data = await response.json();
-  chat.innerHTML += `<p><strong>Bot:</strong> ${data.reply}</p>`;
+  // Simulate bot typing delay
+  setTimeout(() => {
+    const botReply = generateSimulatedResponse(userMessage);
+    const botBubble = document.createElement('p');
+    botBubble.innerHTML = `<strong>Bot:</strong> ${botReply}`;
+    chat.appendChild(botBubble);
+    chat.scrollTop = chat.scrollHeight;
+  }, 700);
+}
+
+// Optional: Simulate simple dynamic replies
+function generateSimulatedResponse(message) {
+  message = message.toLowerCase();
+  if (message.includes('hello') || message.includes('hi')) {
+    return "Hi there! How can I assist you today?";
+  } else if (message.includes('price')) {
+    return "Our pricing depends on your needs. Let me know what you're interested in!";
+  } else if (message.includes('support')) {
+    return "You can reach our support team at support@example.com.";
+  } else {
+    return "That's interesting! Tell me more.";
+  }
 }
