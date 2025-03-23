@@ -8,7 +8,6 @@ async function sendMessage() {
   if (!message) return;
   inputEl.value = '';
 
-  // Display user message
   chat.innerHTML += `<p class="user"><strong>You:</strong> ${message}</p>`;
 
   try {
