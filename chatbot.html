@@ -66,43 +66,6 @@
     <button onclick="sendMessage()">Send</button>
   </div>
 
-  <script>
-    const API_URL = 'https://ai-business-chatbot.onrender.com/chat'; // Render backend
-
-    const chat = document.getElementById('chat');
-
-    function appendMessage(sender, message) {
-      const p = document.createElement('p');
-      p.className = sender;
-      p.textContent = `${sender === 'user' ? 'You' : 'Bot'}: ${message}`;
-      chat.appendChild(p);
-      chat.scrollTop = chat.scrollHeight;
-    }
-
-    async function sendMessage() {
-      const input = document.getElementById('userInput');
-      const message = input.value.trim();
-      if (!message) return;
-
-      appendMessage('user', message);
-      input.value = '';
-
-      try {
-        const response = await fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message })
-        });
-
-        if (!response.ok) throw new Error('Failed to connect');
-
-        const data = await response.json();
-        appendMessage('bot', data.reply || 'No response from server');
-      } catch (err) {
-        console.error(err);
-        appendMessage('bot', 'Error: Unable to connect to chatbot server.');
-      }
-    }
-  </script>
+  <script src="chatbot.js"></script>
 </body>
 </html>
